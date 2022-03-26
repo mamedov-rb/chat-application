@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="app-name">demo-service</Property>
+        <Property name="console.thresholdFilter">ALL</Property>
+        <Property name="pattern">%style{%d{ISO8601}} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %style{%notEmpty{[${app-name},%X{traceId},%X{spanId},%X{spanExportable}]}}{bright,green} %msg%n%throwable</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <ThresholdFilter level="${console.thresholdFilter}"/>
+            <PatternLayout pattern="${pattern}"/>
+        </Console>
+        <RollingFile name="FILE_APPENDER"
+                     fileName="./logs/service.log"
+                     filePattern="./logs/service.%d{yyyy-MM-dd}.%i.log.gz">
+            <PatternLayout pattern="${pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5" compressionLevel="9">
+                <Delete basePath="./logs/" maxDepth="1">
+                    <IfFileName glob="*.log.gz">
+                        <IfAccumulatedFileCount exceeds="5" />
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE_APPENDER"/>
+        </Root>
+        <Logger name="com.rb.alwaysontheroad" level="INFO" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE_APPENDER"/>
+        </Logger>
+        <Logger name="reactor.netty.http.client.HttpClient" level="TRACE" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE_APPENDER"/>
+        </Logger>
+        <Logger name="org.zalando.logbook.Logbook" level="TRACE" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE_APPENDER"/>
+        </Logger>
+        <Logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE_APPENDER"/>
+        </Logger>
+        <Logger name="org.springframework.security" level="INFO" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE_APPENDER"/>
+        </Logger>
+    </Loggers>
+</Configuration>

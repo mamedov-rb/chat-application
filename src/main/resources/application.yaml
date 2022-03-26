@@ -1,0 +1,29 @@
+server.port: 9090
+
+eureka:
+  client:
+    serviceUrl.defaultZone: 'http://localhost:8761/eureka/'
+    registry-fetch-interval-seconds: 30
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application.name: 'empty-service'
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: 'http://localhost:8080/auth/realms/shop-realm'
+  sleuth:
+    reactor.instrumentation-type: decorate-on-each
+  zipkin.base-url: 'http://localhost:9411'
+  boot.admin.client.url: 'http://localhost:5050'
+
+management:
+  endpoints.web.exposure.include: '*'
+  endpoint:
+    logfile:
+      external-file: ./logs/service.log
+      enabled: true
+    health.show-details: always
+    loggers.enabled: true
