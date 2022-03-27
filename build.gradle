@@ -1,7 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '2.6.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'application'
     id 'java'
 }
 
@@ -9,9 +8,9 @@ group = 'com.rb.alwaysontheroad'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-
-application {
-    applicationDefaultJvmArgs = ['-Xms128M', '-Xmx256M', '-XX:ActiveProcessorCount=2', '-Dspring.zipkin.enabled=false']
+bootRun {
+    systemProperties = System.properties
+    jvmArgs = ['-Xms128M', '-Xmx256M', '-XX:ActiveProcessorCount=2', '-Dspring.zipkin.enabled=false']
 }
 
 configurations {
@@ -35,7 +34,7 @@ ext {
     set('mapStructVersion', '1.2.0.Final')
     set('spockVersion', '2.0-groovy-3.0')
     set('testcontainersVersion', '1.16.0')
-    set('commonsLang3Version', '3.9')
+    set('commonsLang3Version', '3.12.0')
     set('commonsCollectionsVersion', '3.2.2')
 }
 
@@ -57,11 +56,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-log4j2'
-    implementation 'org.zalando:logbook-spring-boot-starter:2.4.1'
+    implementation 'org.zalando:logbook-spring-boot-starter:2.14.0'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
     implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
-    implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.5.2'
+    implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.6.6'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -69,8 +68,8 @@ dependencies {
     implementation "org.mapstruct:mapstruct-jdk8:${mapStructVersion}"
     compileOnly "org.mapstruct:mapstruct-processor:${mapStructVersion}"
     implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
-    implementation "commons-collections:commons-collections:${commonsCollectionsVersion}"
     testImplementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
+    implementation "commons-collections:commons-collections:${commonsCollectionsVersion}"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
