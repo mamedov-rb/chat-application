@@ -1,4 +1,4 @@
-Empty template project for reusing predefined necessary dependencies ang configs. The project is typical Spring Cloud reactive microservice
+#Empty template project for reusing predefined necessary dependencies ang configs. The project is typical Spring Cloud reactive microservice
 
 How to use:
 - crete project directory
