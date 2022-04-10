@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.rb.alwaysontheroad'
+group = 'com.rb.alwaysontheroad.chatservice'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -50,6 +50,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
     implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'de.codecentric:spring-boot-admin-starter-client'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'

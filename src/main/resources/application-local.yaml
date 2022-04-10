@@ -1,9 +1,6 @@
 eureka:
   client:
     serviceUrl.defaultZone: 'http://localhost:8761/eureka'
-    registry-fetch-interval-seconds: 30
-  instance:
-    prefer-ip-address: true
 
 spring:
   security:
