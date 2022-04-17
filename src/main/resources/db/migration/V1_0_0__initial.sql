@@ -13,7 +13,7 @@ alter table chat_app_schema.chat owner to chat_db_admin;
 create table chat_app_schema.participant
 (
     id         uuid not null primary key,
-    user_id    uuid not null,
+    user_id    uuid not null unique,
     created_at timestamp,
     updated_at timestamp
 );
@@ -25,6 +25,7 @@ create table chat_app_schema.chat_join
     id             uuid not null primary key,
     created_at     timestamp,
     chat_id        uuid constraint chat_join_chat_fk references chat_app_schema.chat,
-    participant_id uuid constraint chat_join_participant_fk references chat_app_schema.participant
+    participant_id uuid constraint chat_join_participant_fk references chat_app_schema.participant,
+    unique (chat_id, participant_id)
 );
 alter table chat_app_schema.chat_join owner to chat_db_admin;

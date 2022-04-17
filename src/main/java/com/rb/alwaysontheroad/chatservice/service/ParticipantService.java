@@ -28,7 +28,7 @@ public class ParticipantService {
     @NotNull
     @Transactional
     public Participant findOrCreate(@NotNull UUID id) {
-        return participantRepository.findById(id)
+        return participantRepository.findByUserId(id)
                 .orElseGet(() -> participantRepository.save(new Participant().setUserId(id)));
     }
 }
