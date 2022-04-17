@@ -37,6 +37,7 @@ public class ChatService {
     }
 
     @NotNull
+//    @Cacheable(value = "chats-by-name", key = "#name")
     @Transactional(readOnly = true)
     public Page<Chat> findAllByNameLike(String name, Pageable pageable) {
         return chatRepository.findByNameLike(StringUtils.wrap(name, "%"), pageable);

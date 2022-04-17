@@ -20,14 +20,9 @@ public class CacheConfig {
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
         ApplicationProps.Redis redis = applicationProps.getRedis();
-
         LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
                 .readFrom(REPLICA_PREFERRED)
                 .build();
-
-        return new LettuceConnectionFactory(
-                new RedisStandaloneConfiguration(redis.getHost(), redis.getPort()),
-                clientConfig
-        );
+        return new LettuceConnectionFactory(new RedisStandaloneConfiguration(redis.getHost(), redis.getPort()), clientConfig);
     }
 }

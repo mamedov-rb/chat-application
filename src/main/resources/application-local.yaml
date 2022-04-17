@@ -3,14 +3,17 @@ eureka:
     serviceUrl.defaultZone: 'http://localhost:8761/eureka'
 
 spring:
-  cloud.discovery.enabled: false
-  redis:
-    host: localhost
-    port: 6379
+  cloud.discovery.enabled: true
+  zipkin.enabled: false
+  boot.admin.client.enabled: false
+  boot.admin.client.url: 'http://localhost:5050'
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: 'http://localhost:7070/auth/realms/online-shop'
-  zipkin.enabled: false
-  boot.admin.client.url: 'http://localhost:5050'
+
+com.rb.alwaysontheroad.chatservice:
+  redis:
+    host: 'localhost'
+    port: 6379
