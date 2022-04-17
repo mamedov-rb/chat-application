@@ -24,8 +24,9 @@ public class ChatJoinService {
     @Transactional
     public ChatJoin joinParticipantToChat(@NotNull Jwt authentication, @NotNull ChatJoinDto chatJoinDto) {
         @NotNull UUID currentUserId = UUID.fromString((String) authentication.getClaims().get("sub"));
-        @NotNull Participant participant = participantService.findOrCreate(currentUserId);
+        @NotNull Participant participant = participantService.findByUserIdOrCreate(currentUserId);
         @NotNull Chat chat = chatService.findById(chatJoinDto.getChatId());
+
         return chatJoinRepository.save(new ChatJoin()
                 .setParticipant(participant)
                 .setChat(chat)

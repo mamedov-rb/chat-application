@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
@@ -36,4 +37,7 @@ public class Participant {
 
     @UpdateTimestamp
     private Instant updatedAt;
+
+    @Transient
+    private static final long serialVersionUID = 1567053491060394675L;
 }

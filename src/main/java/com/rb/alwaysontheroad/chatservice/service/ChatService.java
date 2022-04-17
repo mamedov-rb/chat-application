@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,7 @@ public class ChatService {
     private final ChatRepository chatRepository;
 
     @NotNull
-//    @Cacheable(value = "chat", key = "#id")
+    @Cacheable(value = "chat", key = "#id")
     @Transactional(readOnly = true)
     public Chat findById(@NotNull UUID id) {
         return chatRepository.findById(id)
@@ -29,21 +31,14 @@ public class ChatService {
     }
 
     @NotNull
-//    @Cacheable(value = "chat", key = "#name")
-    @Transactional(readOnly = true)
-    public Chat findByName(@NotNull String name) {
-        return chatRepository.findByName(name)
-                .orElseThrow(() -> new ChatException(String.format("Chat with name: '%s' - Not found.", name)));
-    }
-
-    @NotNull
-//    @Cacheable(value = "chats-by-name", key = "#name")
+    @Cacheable(value = "chats-by-name", key = "#name")
     @Transactional(readOnly = true)
     public Page<Chat> findAllByNameLike(String name, Pageable pageable) {
         return chatRepository.findByNameLike(StringUtils.wrap(name, "%"), pageable);
     }
 
     @NotNull
+    @CacheEvict(value = "chats-by-name", allEntries=true)
     @Transactional
     public Chat createNewOne(@NotNull Chat chat) {
         return chatRepository.save(chat);

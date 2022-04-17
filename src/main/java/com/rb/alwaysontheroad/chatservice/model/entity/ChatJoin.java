@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -35,4 +36,7 @@ public class ChatJoin {
 
     @CreationTimestamp
     private Instant createdAt;
+
+    @Transient
+    private static final long serialVersionUID = 2577753491060394677L;
 }

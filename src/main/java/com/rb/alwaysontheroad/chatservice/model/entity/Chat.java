@@ -15,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
@@ -24,7 +26,7 @@ import java.util.UUID;
 @Entity
 @Accessors(chain = true)
 @FieldNameConstants
-public class Chat {
+public class Chat implements Serializable {
 
     @Id
     @GeneratedValue(generator = "HibernateUUID")
@@ -46,4 +48,7 @@ public class Chat {
 
     @UpdateTimestamp
     private Instant updatedAt;
+
+    @Transient
+    private static final long serialVersionUID = 2567653491060394677L;
 }
