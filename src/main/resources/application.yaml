@@ -15,16 +15,6 @@ spring:
       time-to-live: 43200m
   datasource:
     driverClassName: org.postgresql.Driver
-    url: "jdbc:postgresql://127.0.0.1:5432/chat_db"
-    username: chat_db_admin
-    password: ZXadQR
-    hikari:
-      schema: chat_app_schema
-  flyway:
-    url: ${spring.datasource.url}
-    user: ${spring.datasource.username}
-    password: ${spring.datasource.password}
-    schemas: ${spring.datasource.hikari.schema}
   jpa:
     properties:
       hibernate:

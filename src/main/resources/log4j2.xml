@@ -62,5 +62,9 @@
             <AppenderRef ref="CONSOLE"/>
             <AppenderRef ref="FILE_APPENDER"/>
         </Logger>
+        <Logger name="org.testcontainers" level="DEBUG" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE_APPENDER"/>
+        </Logger>
     </Loggers>
 </Configuration>
