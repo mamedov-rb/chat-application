@@ -1,16 +1,14 @@
-package com.rb.alwaysontheroad.empty;
+package com.rb.alwaysontheroad.chatservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@EnableTransactionManagement
-public class ChatService {
+public class ChatApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ChatService.class, args);
+        SpringApplication.run(ChatApplication.class, args);
     }
 }

@@ -1,4 +1,4 @@
-package com.rb.alwaysontheroad.empty.config;
+package com.rb.alwaysontheroad.chatservice.config;
 
 import lombok.Getter;
 import lombok.Setter;

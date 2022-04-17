@@ -1,4 +1,4 @@
-package com.rb.alwaysontheroad.empty.config;
+package com.rb.alwaysontheroad.chatservice.config;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
