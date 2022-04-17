@@ -1,32 +1,35 @@
-package com.rb.alwaysontheroad.empty.model.data;
+package com.rb.alwaysontheroad.chatservice.model.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 @Data
-@Table(name = "chat_room")
+@Table(name = "participant")
 @Entity
-public class ChatRoom {
+@Accessors(chain = true)
+public class Participant {
 
     @Id
     @GeneratedValue(generator = "HibernateUUID")
     @GenericGenerator(name = "HibernateUUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @Column(unique = true)
-    private String name;
+    private UUID userId;
 
-    private String description;
+    @OneToMany(mappedBy = "participant")
+    private List<ChatJoin> chatJoins;
 
     @CreationTimestamp
     private Instant createdAt;
