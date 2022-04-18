@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: "jdbc:postgresql://127.0.0.1:5434/test_chat_db"
+    username: chat_db_admin
+    password: password
+    hikari:
+      schema: chat_app_schema
+    flyway:
+      url: ${spring.datasource.url}
+      user: ${spring.datasource.username}
+      password: ${spring.datasource.password}
+      schemas: ${spring.datasource.hikari.schema}

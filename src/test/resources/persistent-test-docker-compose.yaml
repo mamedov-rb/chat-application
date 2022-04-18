@@ -1,0 +1,16 @@
+version: '3.7'
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 151.150.100.0/24
+
+services:
+  postgres:
+    image: postgres:12-alpine
+    ports:
+      - '5434:5432'
+    env_file:
+      - ./postgres/postgres.env

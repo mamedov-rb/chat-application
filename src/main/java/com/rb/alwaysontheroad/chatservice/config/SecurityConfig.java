@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Profile("!test")
+@Profile("!integration-test")
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig  extends WebSecurityConfigurerAdapter {
