@@ -1,9 +1,10 @@
 package com.rb.alwaysontheroad.chatservice.config;
 
+import com.rb.alwaysontheroad.chatservice.shared.event.Routes;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,8 +20,8 @@ import java.util.stream.Collectors;
 
 @Profile("!integration-test")
 @EnableWebSecurity
-@EnableMethodSecurity
-public class SecurityConfig  extends WebSecurityConfigurerAdapter {
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String V_3_API_DOCS = "/v3/api-docs/**";
     public static final String WEBJARS_SWAGGER_UI = "/webjars/swagger-ui/**";
     public static final String SWAGGER_UI_HTML = "/swagger-ui.html";

@@ -66,5 +66,9 @@
             <AppenderRef ref="CONSOLE"/>
             <AppenderRef ref="FILE_APPENDER"/>
         </Logger>
+        <Logger name="org.springframework.web.socket.config.WebSocketMessageBrokerStats" level="DEBUG" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE_APPENDER"/>
+        </Logger>
     </Loggers>
 </Configuration>

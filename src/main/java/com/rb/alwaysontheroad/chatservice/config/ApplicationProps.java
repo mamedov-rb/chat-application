@@ -18,12 +18,35 @@ import javax.validation.constraints.Positive;
 @ConfigurationProperties(prefix = "com.rb.alwaysontheroad.chatservice")
 public class ApplicationProps {
     @NotNull
-    private Redis redis;
+    private ApplicationProps.Redis redis;
+    @NotNull
+    private ApplicationProps.StompBroker stompBroker;
 
     @Valid
     @Getter
     @Setter
     public static class Redis {
+        @NotBlank
+        private String host;
+        @NotNull
+        @Positive
+        private Integer port;
+    }
+
+    @Valid
+    @Getter
+    @Setter
+    public static class StompBroker {
+        @NotBlank
+        private String username;
+        @NotBlank
+        private String password;
+        @NotBlank
+        private String clientUsername;
+        @NotBlank
+        private String clientPassword;
+        @NotBlank
+        private String vHost;
         @NotBlank
         private String host;
         @NotNull

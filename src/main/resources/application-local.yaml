@@ -28,3 +28,11 @@ com.rb.alwaysontheroad.chatservice:
   redis:
     host: 'localhost'
     port: 6379
+  stomp-broker:
+    username: 'chat_admin'
+    password: 'ZXadQR'
+    client-username: ${com.rb.alwaysontheroad.chatservice.stomp-broker.username}
+    client-password: ${com.rb.alwaysontheroad.chatservice.stomp-broker.password}
+    v-host: 'chat_vhost'
+    host: 'localhost'
+    port: 61613
