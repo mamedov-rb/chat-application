@@ -8,8 +8,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -17,13 +19,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class ChatDto {
+public class ChatDto implements Serializable {
 
     @Null(groups = Validation.Create.class)
     @NotNull(groups = Validation.Update.class)
     private UUID id;
 
-    @NotNull(groups = Validation.Create.class)
+    @NotBlank(groups = Validation.Create.class)
     private String name;
 
     private String description;
@@ -36,5 +38,7 @@ public class ChatDto {
 
     @Null(groups = {Validation.Create.class, Validation.Update.class})
     private Instant updatedAt;
+
+    private static final long serialVersionUID = 2567653491060394677L;
 }
 

@@ -1,7 +1,10 @@
 package com.rb.alwaysontheroad.chatservice.model.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
+import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,15 +14,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Table(name = "participant")
 @Entity
+@ToString(exclude = {"chatJoins"})
 @Accessors(chain = true)
+@FieldNameConstants
 public class Participant {
 
     @Id
@@ -37,7 +42,4 @@ public class Participant {
 
     @UpdateTimestamp
     private Instant updatedAt;
-
-    @Transient
-    private static final long serialVersionUID = 1567053491060394675L;
 }

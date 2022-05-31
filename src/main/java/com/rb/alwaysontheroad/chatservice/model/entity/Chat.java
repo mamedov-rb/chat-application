@@ -1,7 +1,9 @@
 package com.rb.alwaysontheroad.chatservice.model.entity;
 
 import com.rb.alwaysontheroad.chatservice.model.enums.ChatType;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,18 +17,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Table(name = "chat")
 @Entity
+@ToString(exclude = {"chatJoins"})
 @Accessors(chain = true)
 @FieldNameConstants
-public class Chat implements Serializable {
+public class Chat {
 
     @Id
     @GeneratedValue(generator = "HibernateUUID")
@@ -48,7 +50,4 @@ public class Chat implements Serializable {
 
     @UpdateTimestamp
     private Instant updatedAt;
-
-    @Transient
-    private static final long serialVersionUID = 2567653491060394677L;
 }

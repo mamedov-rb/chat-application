@@ -1,6 +1,8 @@
 package com.rb.alwaysontheroad.chatservice.model.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,13 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.time.Instant;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Table(name = "chat_join")
 @Entity
+@ToString(exclude = {"chat", "participant"})
 @Accessors(chain = true)
 public class ChatJoin {
 
@@ -36,7 +39,4 @@ public class ChatJoin {
 
     @CreationTimestamp
     private Instant createdAt;
-
-    @Transient
-    private static final long serialVersionUID = 2577753491060394677L;
 }
